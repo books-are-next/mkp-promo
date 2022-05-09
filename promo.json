@@ -1,3 +1,5 @@
 {
-  "link": "https://www.mlp.cz/"
+  "link": "https://www.mlp.cz/",
+  "logo-light": "logo-light.svg",
+  "logo-dark": "logo-dark.svg"  
 }
