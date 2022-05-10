@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://books-are-next.github.io/mkp-promo/",
   "publisher": "Městská knihovna v Praze",
   "link": "https://www.mlp.cz/",
   "logo-width": "clamp(300px, 40vw, 500px)",
