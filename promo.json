@@ -1,6 +1,7 @@
 {
   "publisher": "Městská knihovna v Praze",
   "link": "https://www.mlp.cz/",
+  "logo-width": 300,
   "logo-light": "logo-light.svg",
   "logo-dark": "logo-dark.svg"  
 }
