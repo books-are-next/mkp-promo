@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Promo test</title>
+
+  <link rel="stylesheet" type="text/css" href="promo.css">
+  <style type="text/css">
+    body {
+      --background: white;
+      --transparent-background: rgba(255, 255, 255, 0);
+      --text-color: black;
+      --accent-color: #0033f8;
+      --highlight-color: rgba(255, 255, 0, 1);
+      --link: blue;
+      --visited: purple;
+    }
+
+    body.nb-color-scheme-light {
+      --background: white;
+      --transparent-background: rgba(255, 255, 255, 0);
+      --text-color: black;
+      --accent-color: #0033f8;
+      --highlight-color: rgba(255, 255, 0, 1);
+      --link: blue;
+      --visited: purple;
+    }
+
+    body.nb-color-scheme-dark {
+      --background: #333;
+      --transparent-background: #33333300;
+      --text-color: #eee;
+      --accent-color: #53c3ff;
+      --highlight-color: rgba(155, 50, 0, 1);
+      --link: aqua;
+      --visited: pink;
+    }
+
+    body.nb-color-scheme-sepia {
+      --background: rgb(236, 207, 179);
+      --transparent-background: rgba(236, 207, 179, 0);
+      --text-color: rgb(97, 68, 41);
+      --accent-color: rgb(154, 76, 45);
+      --highlight-color: rgba(255, 255, 0, 1);
+      --link: rgb(117, 49, 21);
+      --visited: rgb(102, 82, 94);
+    }
+
+    body {
+      color: var(--text-color);
+      background: var(--background);
+    }
+
+    body :link {
+      color: var(--link);
+    }
+
+    body :visited {
+      color: var(--visited);
+    }
+
+    .color-setter {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 0.5rem;
+      margin: 0;
+      z-index: 99;
+
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .color-setter li {
+      color: white;
+      display: inline-block;
+      list-style-type: none;
+    }
+  </style>
+</head>
+<body>
+  <ul class="color-setter">
+    <li class="set-auto">auto</li>
+    <li class="set-dark">dark</li>
+    <li class="set-light">light</li>
+    <li class="set-sepia">sepia</li>
+  </ul>
+
+  <main>
+    <div id="promo">
+      <div class="promo-light">Light placeholder.</div>
+      <div class="promo-dark">Dark placeholder.</div>
+      <div class="promo-custom-light"></div>
+      <div class="promo-custom-dark"></div>
+    </div>
+  </main>
+
+  <script src="promo.js"></script>
+  <script>
+    function applyColorScheme(mode) {
+      console.log("appliedColorScheme");
+      removeColorSchemes();
+
+      if (mode !== "auto") {
+        document.body.classList.add(`nb-color-scheme-${mode}`);
+      }
+    }
+
+    function removeColorSchemes() {
+      document.body.classList.remove(
+        'nb-color-scheme-light',
+        'nb-color-scheme-dark',
+        'nb-color-scheme-sepia'
+      );
+    }
+
+    document.querySelector('.set-auto').addEventListener("click", () => applyColorScheme('auto'));
+    document.querySelector('.set-dark').addEventListener("click", () => applyColorScheme('dark'));
+    document.querySelector('.set-light').addEventListener("click", () => applyColorScheme('light'));
+    document.querySelector('.set-sepia').addEventListener("click", () => applyColorScheme('sepia'));
+  </script>
+</body>
+</html>
