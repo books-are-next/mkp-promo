@@ -6,12 +6,17 @@ const darkWrapper = document.querySelector(".promo-custom-dark");
 
 const template = `<div class="promo-item">
   <img src="%baseUrl%assets/%image%">
-  <p>
-    <b>Městská knihovna v&nbsp;Praze</b>
-    <br>
-    %text%
-    <a class="promo-cta" href="https://www.mlp.cz" target="_blank" rel="noopener">Zjistit víc</a>
-  </p>
+  <div>
+    <p>
+      <b>Městská knihovna v&nbsp;Praze</b>
+      <br>
+      %text%
+    </p>
+    <p>
+      <a class="promo-cta" href="https://www.mlp.cz" target="_blank" rel="noopener">Zjistit víc</a>
+      <a class="promo-next-chapter" href="%next%">Pokračovat do knihy</a>
+    </p>
+   </div>
 </div>`;
 
 const mkpFooter = `<div class="mkp-footer">
@@ -20,9 +25,9 @@ const mkpFooter = `<div class="mkp-footer">
     <img src="%baseUrl%assets/prague.svg">
   </div>
   <div class="mkp-footer-links">
-    <a href="https://www.mlp.cz" target="_blank" rel="noopener">www.mlp.cz</a><br>
-    <a href="https://www.e-knihovna.cz" target="_blank" rel="noopener">www.e-knihovna.cz</a><br>
-    <a href="https://www.facebook.com/knihovna" target="_blank" rel="noopener">www.facebook.com/knihovna</a>
+    <a href="https://www.mlp.cz" target="_blank" rel="noopener">mlp.cz</a><br>
+    <a href="https://www.e-knihovna.cz" target="_blank" rel="noopener">e-knihovna.cz</a><br>
+    <a href="https://www.facebook.com/knihovna" target="_blank" rel="noopener">fb.com/knihovna</a>
   </div>
 </div>`;
 
@@ -53,17 +58,28 @@ function getPromoBaseUrl() {
   return el.getAttribute("src").replace(/promo\.js$/, "");
 }
 
+function getNextChapterLink() {
+  const el = document.querySelector("link[rel='next']");
+  if (!el) return null;
+
+  return el.getAttribute("href");
+}
+
 function renderPromo() {
   if (!lightWrapper || !darkWrapper) return;
 
   const baseUrl = getPromoBaseUrl();
   if (!baseUrl) return;
 
+  const nextChapterLink = getNextChapterLink();
+  if (!nextChapterLink) return;
+
   const html = items
     .map((item) =>
       template
         .replace("%image%", item.image)
         .replace("%text%", item.text)
+        .replace("%next%", nextChapterLink)
         .replace(/%baseUrl%/g, baseUrl)
     )
     .join("\n");
