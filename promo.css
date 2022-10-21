@@ -137,12 +137,12 @@ main #promo p {
   padding: 0.35em 1.5em;
   text-align: center;
   text-decoration: none;
-  color: var(--text-color);
+  color: white;
   background: var(--accent-color);
   box-shadow: 4px 4px 10px 0px rgba(204, 0, 0, 0.15);
 }
 
-.nb-color-scheme-dark .promo-custom-dark .promo-item img {
+.promo-custom-dark .promo-item img {
   filter: invert();
 }
 
@@ -194,7 +194,10 @@ main #promo p {
   object-fit: contain;
   margin: 0 auto;
 }
-
+#promo .promo-cta-wrapper {
+  text-indent: 0;
+  line-height: 1.8;
+}
 #promo .mkp-footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -229,26 +232,27 @@ main #promo p {
 /* layout / small */
 @media (max-aspect-ratio: 1/1) {
   main #promo {
+    background: var(--background);
     top: 2rem;
     bottom: 2rem;
-    left: 4rem;
-    right: 4rem;
+    left: 8vw;
+    right: 8vw;
   }
   .promo-item {
-    height: 60%;
-    grid-gap: 2rem;
-    grid-template-rows: auto 1fr;
+    display: grid;
+    grid-template-rows: 35vh 25vh;
+    grid-gap: 1rem;
+    height: calc(55vh + 1rem);
   }
   .promo-item img {
-    grid-row: 2;
-    height: 40vh;
-    align-self: end;
+    grid-row: 1;
+    height: 35vh;
+    width: 100%;
     grid-row: 1;
   }
   .promo-item p {
     font-size: clamp(13px, 5vw, 25px);
-    padding-right: 10vw;
-    grid-row: 2;
+    text-indent: 0;
   }
   #promo .mkp-footer-logos img {
     margin: 1vw 1rem 0 0;
@@ -256,7 +260,7 @@ main #promo p {
   }
 
   #promo .mkp-footer-links {
-    margin-top: 1vw;
+    margin-top: 0.5vw;
     font-size: 3vw;
   }
 }
@@ -264,17 +268,17 @@ main #promo p {
 /* layout / large */
 @media (min-aspect-ratio: 1/1) {
   main #promo {
+    background: var(--background);
     top: 2rem;
     bottom: 2rem;
     left: 8rem;
     right: 8rem;
   }
   .promo-item {
-    height: 65vh;
+    height: 55vh;
     grid-template-columns: 2fr 3fr;
     width: calc(95vw - 16rem);
   }
-
   .promo-item img {
     grid-row: 1;
     grid-column: 2;
@@ -284,10 +288,12 @@ main #promo p {
   .promo-item p {
     grid-column: 1;
     grid-row: 1;
-    font-size: clamp(1px, 2vw, 40px);
+    font-size: clamp(1px, 2.5vw, 50px);
     width: 35vw;
   }
-
+  #promo .promo-cta-wrapper {
+    font-size: 1.4em;
+  }
   #promo .mkp-footer {
     height: 10vh;
     width: 75%;

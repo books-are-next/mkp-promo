@@ -6,20 +6,18 @@ const darkWrapper = document.querySelector(".promo-custom-dark");
 
 const template = `<div class="promo-item">
   <img src="%baseUrl%assets/%image%">
-  <div>
-    <p>
-      <b>Městská knihovna v&nbsp;Praze</b>
-      <br>
-      %text%
-    </p>
-    <p>
-      <a class="promo-cta" href="https://www.mlp.cz" target="_blank" rel="noopener">Zjistit víc</a>
-      <a class="promo-next-chapter" href="%next%">Pokračovat do knihy</a>
-    </p>
-   </div>
+  <p>
+    <b>Městská knihovna v&nbsp;Praze</b>
+    <br>
+    %text%
+  </p>
 </div>`;
 
-const mkpFooter = `<div class="mkp-footer">
+const mkpFooter = `<p class="promo-cta-wrapper">
+  <a class="promo-cta" href="https://www.mlp.cz" target="_blank" rel="noopener">Zjistit víc</a>
+  <a class="promo-next-chapter" href="%next%">Pokračovat do knihy</a>
+</p>
+<div class="mkp-footer">
   <div class="mkp-footer-logos">
     <img src="%baseUrl%assets/mkp-%theme%-short.svg">
     <img src="%baseUrl%assets/prague.svg">
@@ -79,15 +77,22 @@ function renderPromo() {
       template
         .replace("%image%", item.image)
         .replace("%text%", item.text)
-        .replace("%next%", nextChapterLink)
         .replace(/%baseUrl%/g, baseUrl)
     )
     .join("\n");
 
   lightWrapper.innerHTML =
-    html + mkpFooter.replace("%theme%", "light").replace(/%baseUrl%/g, baseUrl);
+    html +
+    mkpFooter
+      .replace("%theme%", "light")
+      .replace("%next%", nextChapterLink)
+      .replace(/%baseUrl%/g, baseUrl);
   darkWrapper.innerHTML =
-    html + mkpFooter.replace("%theme%", "dark").replace(/%baseUrl%/g, baseUrl);
+    html +
+    mkpFooter
+      .replace("%theme%", "dark")
+      .replace("%next%", nextChapterLink)
+      .replace(/%baseUrl%/g, baseUrl);
 
   document.body.classList.add(`custom-promo-applied`);
   console.log("Custom promo applied.");
